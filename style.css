@@ -96,3 +96,45 @@ button:hover{
   padding: 15px;
   margin: 5px;
 }
+
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+    padding: 0 10px;
+  }
+
+  nav ul {
+    gap: 15px;
+    padding: 12px 5px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+
+  #parent-kalkulator {
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  #form-hpp {
+    width: 100%;
+    max-width: none;
+    margin: 16px 0;
+    padding: 15px;
+  }
+
+  .hasil-hpp {
+    display: block;
+    width: auto;
+    max-width: none;
+    margin: 10px 12px 30px;
+    padding: 0;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
