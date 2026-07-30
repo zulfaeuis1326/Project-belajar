@@ -1,33 +1,22 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Kalkulator HPP</title>
-  <link rel="stylesheet" href="./style.css?v=5">
-</head>
-
-<body>
+<html>
+  <head>
+      <title>Kalkulator HPP</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+  </head>
   <body>
     <header>
-        <h1>Kalkukator Hitung HPP</h1>  
+        <h1>Kalkulator Hitung HPP</h1>
+        <p class="subjudul">Catat bahan baku, langsung tahu berapa modal per produk.</p>
     </header>
     <nav>
         <ul>
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">Profile</a>
-            </li>
-            <li>
-              <a href="#">Contact me</a>
-            </li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Contact me</a></li>
         </ul>
     </nav>
     <main>
@@ -35,50 +24,64 @@
           <form action="" method="post" id="form-hpp">
             <div class="daftar-produk">
               <label for="nama-produk">Nama Produk :</label>
-              <input type="text" id="nama-produk" name="nama-produk" placeholder="Nama Produk" required><br>
+              <input type="text" id="nama-produk" name="nama-produk" placeholder="Nama Produk" required>
+
               <label for="kategori">Kategori :</label>
               <select id="kategori">
                   <option value="minuman">Minuman</option>
                   <option value="makanan">Makanan</option>
                   <option value="snack">Snack</option>
               </select>
+
+              <label for="jumlah-produk">Jumlah Produk Dihasilkan :</label>
+              <input type="number" id="jumlah-produk" placeholder="Contoh: 1" min="1" value="1">
             </div>
-            <div class="daftar-bahan">
-                <h4>Masukan Bahan Baku:</h4>
-                  <div class="item-bahan">
-                     <label>Nama bahan</label>
-                    <input type="text" id="nama-bahan" name="nama-bahan" placeholder="Nama bahan">
+
+            <div class="daftar-bahan" id="daftar-bahan">
+                <h4>Masukan Bahan Baku</h4>
+                <div class="item-bahan">
+                    <label>Nama bahan</label>
+                    <input type="text" class="nama-bahan" placeholder="Nama bahan">
+
                     <label>Harga Beli</label>
-                    <input type="number" id="harga-bahan"placeholder="Contoh: 20000">
+                    <input type="number" class="harga-bahan" placeholder="Contoh: 20000">
+
                     <label>Kapasitas Kemasan</label>
-                    <input type="number" id="kapasitas-bahan"placeholder="Contoh: 1000">
-                    <label for="satuan">Satuan</label>
-                    <select id="satuan-bahan">
-                        <option>gram</option>
-                        <option>mili</option>
-                        <option>kilo</option>
-                        <option>liter</option>
+                    <input type="number" class="kapasitas-bahan" placeholder="Contoh: 1000">
+
+                    <label>Satuan</label>
+                    <select class="satuan-bahan">
+                        <option value="gram">gram</option>
+                        <option value="mili">mili</option>
+                        <option value="kilo">kilo</option>
+                        <option value="liter">liter</option>
                     </select>
+
                     <label>Pemakaian</label>
-                    <input type="number" id="jumlah-bahan"placeholder="Contoh: 150">
-                  </div>
+                    <input type="number" class="jumlah-bahan" placeholder="Contoh: 150">
+                </div>
             </div>
-            <button type="button" id="btn-tambah">+ Tambah Bahan</button>
-            <button type="button" id="btn-hitung">
-Hitung HPP
-</button>
-            </form>
+
+            <div class="aksi-form">
+              <button type="button" id="btn-tambah">+ Tambah Bahan</button>
+              <button type="button" id="btn-hitung">Hitung HPP</button>
+            </div>
+          </form>
       </section>
+
       <section class="hasil-hpp">
-          <h2>Hasil Perhitungan</h2>
-              <div class="hasil-card">
-                <p>Total Modal</p>
-                <h3 id="total">Rp.0</h3>
-              </div>
-              <div class="hasil-card">
-                <p>HPP per Produk</p>
-                <h3 id="nilai-hpp">Rp.0</h3>
-              </div>
+          <div class="struk">
+            <h2>Hasil Perhitungan</h2>
+            <div class="hasil-card">
+              <p>Total Modal</p>
+              <h3 id="total">Rp 0</h3>
+            </div>
+            <div class="garis-putus"></div>
+            <div class="hasil-card">
+              <p>HPP per Produk</p>
+              <h3 id="nilai-hpp">Rp 0</h3>
+            </div>
+          </div>
       </section>
     </main>
   <script src="script.js"></script>
