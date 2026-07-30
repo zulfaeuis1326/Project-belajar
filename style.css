@@ -1,140 +1,361 @@
-*{
-  box-sizing:border-box;
+/* ============================================
+   Kalkulator HPP — tema "buku kas & struk toko"
+   ============================================ */
+
+:root {
+  --kertas: #F6F1E4;
+  --kertas-terang: #FFFDF6;
+  --hijau-ledger: #1E4D3B;
+  --hijau-ledger-gelap: #163829;
+  --tinta: #202B22;
+  --tinta-lembut: #5B6A5F;
+  --kuningan: #C08A28;
+  --kuningan-terang: #E0AE55;
+  --rust: #A15C3B;
+  --garis: #D8CFB8;
+  --radius: 10px;
+  --shadow-kartu: 0 10px 30px -12px rgba(30, 77, 59, 0.28);
 }
 
-h1{
-  color:#F8FAFC;
-  text-align:center;
-  margin:20px 0;
-}
+* { box-sizing: border-box; }
 
-body{
-  margin:0;
-  padding:0;
-  background-color: #0F172A;
-}
-
-nav{
-  color:#F8FAFC;
-  background-color:#38BDF8;
-}
-
-nav ul{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:25px;
-  padding:15px;
-  margin:0;
-  list-style:none;
-}
-
-#parent-kalkulator{
-  display:flex;
-  justify-content:center;
-}
-
-#form-hpp{
-  width:80%;
-  max-width:500px;
-  border:2px solid rgb(255,150,9);
-  border-radius:7px;
-  margin:20px auto;
-  padding:10px;
-  color:#F8FAFC;
-  background-color:#1E293B;
-  box-shadow:0 4px 12px gray;
-}
-
-@media (max-width: 600px) {
-  h1 {
-    font-size: 24px;
-  }
-
-  #form-hpp,
-  .hasil-hpp {
-    width: 92%;
-  }
-
-  nav ul {
-    gap: 15px;
-    padding: 12px 5px;
-  }
-
-  button {
-    width: 100%;
-    margin: 5px 0;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
-input,select{
-  width:100%;
-  padding:10px;
-  border:1px solid gray;
-  border-radius:5px;
-  margin-bottom:15px;
-  color:black;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--kertas);
+  color: var(--tinta);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
 }
 
-button{
-    background-color: darkblue;
-    color:white;
-    border:none;
-    padding:12px;
-    border-radius:8px;
-    transition:0.5s;
+/* ---------- Header & nav ---------- */
+
+header {
+  padding: 2.5rem 1.5rem 1.25rem;
+  text-align: center;
 }
 
-button:hover{
-    background-color: rgba(0,0,255,.15);
-    transform:scale(1.09);
+header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--hijau-ledger);
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
 }
 
-.hasil-hpp{
-  display: inline-block;
-  color: #F8FAFC;
-  padding: 15px;
-  margin: 5px;
+header .subjudul {
+  margin: 0;
+  color: var(--tinta-lembut);
+  font-size: 0.95rem;
 }
 
+nav {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--garis);
+  border-bottom: 1px solid var(--garis);
+  margin: 0 auto 2rem;
+  max-width: 720px;
+}
 
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 22px;
-    padding: 0 10px;
-  }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+}
 
-  nav ul {
-    gap: 15px;
-    padding: 12px 5px;
-  }
+nav a {
+  color: var(--hijau-ledger);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
 
-  nav a {
-    font-size: 14px;
-  }
+nav a:hover,
+nav a:focus-visible {
+  border-color: var(--kuningan);
+}
 
-  #parent-kalkulator {
-    width: 100%;
-    padding: 0 12px;
-  }
+nav a:focus-visible {
+  outline: 2px solid var(--kuningan);
+  outline-offset: 3px;
+}
 
-  #form-hpp {
-    width: 100%;
-    max-width: none;
-    margin: 16px 0;
-    padding: 15px;
-  }
+/* ---------- Layout utama ---------- */
 
-  .hasil-hpp {
-    display: block;
-    width: auto;
-    max-width: none;
-    margin: 10px 12px 30px;
-    padding: 0;
-  }
+main {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  align-items: start;
+}
 
-  button {
-    width: 100%;
-    margin: 5px 0;
+@media (max-width: 860px) {
+  main {
+    grid-template-columns: 1fr;
   }
+}
+
+/* ---------- Kartu "buku catatan" (form) ---------- */
+
+#parent-kalkulator {
+  background: var(--kertas-terang);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-kartu);
+  padding: 2rem 2rem 2rem 3rem;
+  position: relative;
+  border: 1px solid var(--garis);
+}
+
+/* lubang jilid ala buku catatan di sisi kiri */
+#parent-kalkulator::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 24px;
+  bottom: 24px;
+  width: 8px;
+  background-image: radial-gradient(circle, var(--kertas) 3px, transparent 3.5px);
+  background-size: 8px 28px;
+  background-repeat: repeat-y;
+  opacity: 0.9;
+}
+
+.daftar-produk {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--garis);
+}
+
+.daftar-produk label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--hijau-ledger-gelap);
+}
+
+.daftar-bahan h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--hijau-ledger);
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+.item-bahan {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 0.8fr 1fr auto;
+  gap: 0.6rem;
+  align-items: end;
+  background: var(--kertas);
+  border: 1px solid var(--garis);
+  border-radius: 8px;
+  padding: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.item-bahan label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--tinta-lembut);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .item-bahan {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Input & select ---------- */
+
+input, select {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  color: var(--tinta);
+  background: var(--kertas-terang);
+  border: 1px solid var(--garis);
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+}
+
+.daftar-produk input,
+.daftar-produk select {
+  background: var(--kertas);
+}
+
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--kuningan);
+  outline-offset: 1px;
+  border-color: var(--kuningan);
+}
+
+input::placeholder {
+  color: #B7AF9A;
+}
+
+/* ---------- Tombol ---------- */
+
+.aksi-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+button {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  border-radius: 7px;
+  border: none;
+  padding: 0.7rem 1.3rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--kuningan);
+  outline-offset: 2px;
+}
+
+#btn-tambah {
+  background: transparent;
+  color: var(--hijau-ledger);
+  border: 1.5px solid var(--hijau-ledger);
+}
+
+#btn-tambah:hover {
+  background: var(--hijau-ledger);
+  color: var(--kertas-terang);
+}
+
+#btn-hitung {
+  background: var(--kuningan);
+  color: var(--hijau-ledger-gelap);
+  box-shadow: 0 6px 16px -6px rgba(192, 138, 40, 0.6);
+}
+
+#btn-hitung:hover {
+  background: var(--kuningan-terang);
+  transform: translateY(-1px);
+}
+
+.btn-hapus-bahan {
+  background: transparent;
+  color: var(--rust);
+  border: 1px solid var(--rust);
+  font-size: 0.72rem;
+  padding: 0.5rem 0.7rem;
+  white-space: nowrap;
+}
+
+.btn-hapus-bahan:hover {
+  background: var(--rust);
+  color: var(--kertas-terang);
+}
+
+/* ---------- Hasil: struk toko ---------- */
+
+.hasil-hpp {
+  position: sticky;
+  top: 1.5rem;
+}
+
+.struk {
+  background: var(--kertas-terang);
+  padding: 2rem 1.75rem 2.5rem;
+  position: relative;
+  box-shadow: var(--shadow-kartu);
+  border-left: 1px solid var(--garis);
+  border-right: 1px solid var(--garis);
+}
+
+/* tepi bergerigi ala kertas struk yang disobek */
+.struk::before,
+.struk::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background-image:
+    linear-gradient(-45deg, var(--kertas) 7px, transparent 0),
+    linear-gradient(45deg, var(--kertas) 7px, transparent 0);
+  background-position: bottom left;
+  background-size: 14px 14px;
+  background-repeat: repeat-x;
+}
+
+.struk::before { top: -1px; transform: rotate(180deg); }
+.struk::after { bottom: -1px; }
+
+.struk h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+  color: var(--hijau-ledger-gelap);
+  margin: 0 0 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--garis);
+}
+
+.hasil-card {
+  text-align: center;
+  padding: 0.5rem 0 1rem;
+}
+
+.hasil-card p {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tinta-lembut);
+}
+
+.hasil-card h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  color: var(--hijau-ledger);
+  margin: 0;
+}
+
+.garis-putus {
+  border-top: 1px dashed var(--garis);
+  margin: 0.25rem 0;
+}
+
+/* animasi ringan saat hasil baru dihitung ("cap" struk) */
+.hasil-hpp.dihitung .hasil-card h3 {
+  animation: cetak 0.35s ease-out;
+}
+
+@keyframes cetak {
+  from { opacity: 0.3; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
 }
