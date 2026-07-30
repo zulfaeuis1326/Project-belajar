@@ -46,6 +46,27 @@ nav ul{
   box-shadow:0 4px 12px gray;
 }
 
+@media (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  #form-hpp,
+  .hasil-hpp {
+    width: 92%;
+  }
+
+  nav ul {
+    gap: 15px;
+    padding: 12px 5px;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
 input,select{
   width:100%;
   padding:10px;
